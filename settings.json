@@ -1,0 +1,13 @@
+{
+  "RunOnStartup": false,
+  "MinimizeToTray": false,
+  "StartMinimized": false,
+  "LoadSettingsFileHDR": false,
+  "LoadSettingsFileSDR": false,
+  "HDRSettingsFilePath": "",
+  "SDRSettingsFilePath": "",
+  "ApplyUponSwitchingToSDRHDR": false,
+  "ContinuouslyReapply": false,
+  "PollingInterval": 1000,
+  "ReduceCPUUsage": true
+}

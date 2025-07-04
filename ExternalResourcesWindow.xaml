@@ -1,0 +1,67 @@
+﻿<Window x:Class="GammaTuner.ExternalResourcesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GammaTuner"
+        mc:Ignorable="d"
+        Title="Useful Info - GammaTuner" Height="521" Width="575">
+    <Grid>
+        <RichTextBox Margin="0,0,0,-68" TextChanged="RichTextBox_TextChanged" IsReadOnlyCaretVisible="True">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="ABOUT"/>
+                </Paragraph>
+                <Paragraph>
+                    - This app was mostly designed to fix black crush by hand; there will be a bit of a learning curve. 
+                    Will results be precise? Not really. Can it still improve things to YOUR desire? Maybe.
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="TIPS"/>
+                </Paragraph>
+                <Paragraph>
+                    - Have a monitor beside you with your desired/better accuracy than the monitor you want to tune (your primary display).
+                </Paragraph>
+                <Paragraph>
+                    - Modify the gamma chart. Alternate between the "Apply Default Gamma" and "Apply Gamma" buttons to quickly A/B-compare your custom gamma and default gamma.
+                </Paragraph>
+                <Paragraph>
+                    - These YT videos are good for testing black crush (open them on both monitors):
+                </Paragraph>
+                <Paragraph>
+                    -
+                    <Hyperlink NavigateUri="https://www.youtube.com/watch?v=wn517192hO4" RequestNavigate="Hyperlink_RequestNavigate">
+                        HDR Black Crush Test</Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    -
+                    <Hyperlink NavigateUri="https://www.youtube.com/watch?v=z092wdyrZZQ" RequestNavigate="Hyperlink_RequestNavigate">
+                        Darkest Hour Shadow Detail Test (HDR)</Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    -
+                    <Hyperlink NavigateUri="https://youtu.be/FJLAnvSCieA?si=wy0914MaCfn_xMeO" RequestNavigate="Hyperlink_RequestNavigate">
+                        Kyoto, Japan - 21:9 Ultrawide 4K HDR - Gion at Night - Cinematic Short</Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    - Aside from the videos, find some (very dark) test images and open them on both monitors. If you don't have them, you can take 
+                    HDR screenshots with WIN+SHIFT+PrntScrn (Xbox Game Bar), NVIDIA Shadowplay, or some other tools.
+                </Paragraph>
+                <Paragraph>
+                    - Here's a selection of test images from various games:
+                    <Hyperlink NavigateUri="https://drive.google.com/file/d/1WhJdO8Fv5SEKEFAtqgdD1i7SjCMx_rQw/view?usp=sharing" RequestNavigate="Hyperlink_RequestNavigate">Google Drive</Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    - Viewing HDR images: Windows Photos might already be able to display HDR Screenshots (.jxr), but I prefer the tool "HDR + WCG Image Viewer."
+                </Paragraph>
+                <Paragraph>
+                    KNOWN PROBLEMS/INFO ABOUT THIS APP
+                </Paragraph>
+                <Paragraph>
+                    - Having Advanced Color Management (ACM) on will make the app think HDR is always on. Turn it off for profile auto-switch to work properly.
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</Window>
