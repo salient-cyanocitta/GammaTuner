@@ -27,7 +27,7 @@ Additionally, most existing methods require you to manually undo them if you swi
 - Viewing HDR images: Windows Photos might already be able to display HDR Screenshots (.jxr), but I prefer the tool "HDR + WCG Image Viewer."
 
 ## Known Issues
-- Windows Advanced Color Management (ACM) will make the app think it's always in HDR, which breaks the profile auto-switcher.
+- Enabling Windows Advanced Color Management (ACM) will make the app think it's always in HDR, which breaks the profile auto-switcher.
 
 ## Credits
 - [NVCP Toggle](https://github.com/mcgrizzz/NVCP_Toggle) for code inspiration.
