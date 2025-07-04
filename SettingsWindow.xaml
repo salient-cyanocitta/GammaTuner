@@ -5,19 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GammaTuner"
         mc:Ignorable="d"
-        Title="More Settings (GammaTuner)" Height="302" Width="427" MinWidth="427" MinHeight="281" ResizeMode="NoResize">
+        Title="More Settings (GammaTuner)" Height="372" Width="427" MinWidth="427" MinHeight="281" ResizeMode="NoResize">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="15*"/>
-        </Grid.ColumnDefinitions>
         <CheckBox x:Name="MinimizeToTrayCheckbox" Content="Minimize to tray" HorizontalAlignment="Left" Margin="19,20,0,0" VerticalAlignment="Top" IsChecked="False" Checked="MinimizeToTrayCheckbox_CheckedUnchecked" Unchecked="MinimizeToTrayCheckbox_CheckedUnchecked" ToolTip="Minimize to tray when the minimize button is selected. The Close button still exits the app."/>
         <CheckBox x:Name="RunOnStartupCheckbox" Content="Run On Startup" HorizontalAlignment="Left" Margin="19,40,0,0" VerticalAlignment="Top" Checked="RunOnStartupCheckbox_CheckedUnchecked" Unchecked="RunOnStartupCheckbox_CheckedUnchecked" ToolTip="Adds the app to the shell:startup folder when checked and applied. Uncheck and apply to remove it."/>
         <TextBox x:Name="HDRSettingsFileTextBox" HorizontalAlignment="Left" Margin="174,93,0,0" VerticalAlignment="Top" Width="183" TextChanged="HDRSettingsFileTextBox_TextChanged" Grid.ColumnSpan="2"/>
-        <Button x:Name="HDRSettingsFileBrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="40,92,0,0" VerticalAlignment="Top" Click="HDRSettingsFileBrowseButton_Click" Grid.Column="1"/>
+        <Button x:Name="HDRSettingsFileBrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="362,92,0,0" VerticalAlignment="Top" Click="HDRSettingsFileBrowseButton_Click"/>
         <CheckBox x:Name="LoadSettingsFileHDRCheckbox" Content="Load Settings File (HDR):" HorizontalAlignment="Left" Margin="19,94,0,0" VerticalAlignment="Top" Checked="LoadSettingsFileHDRCheckbox_CheckedUnchecked" Unchecked="LoadSettingsFileHDRCheckbox_CheckedUnchecked" ToolTip="This does nothing on its own unless you enable switching of profiles when HDR/SDR change is detected."/>
         <TextBox x:Name="SDRSettingsFileTextBox" HorizontalAlignment="Left" Margin="174,113,0,0" VerticalAlignment="Top" Width="183" TextChanged="SDRSettingsFileTextBox_TextChanged" Grid.ColumnSpan="2"/>
-        <Button x:Name="SDRSettingsFileBrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="40,112,0,0" VerticalAlignment="Top" Click="SDRSettingsFileBrowseButton_Click" Grid.Column="1"/>
+        <Button x:Name="SDRSettingsFileBrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="362,113,0,0" VerticalAlignment="Top" Click="SDRSettingsFileBrowseButton_Click"/>
         <CheckBox x:Name="LoadSettingsFileSDRCheckbox" Content="Load Settings File (SDR):" HorizontalAlignment="Left" Margin="19,114,0,0" VerticalAlignment="Top" Checked="LoadSettingsFileSDRCheckbox_CheckedUnchecked" Unchecked="LoadSettingsFileSDRCheckbox_CheckedUnchecked" ToolTip="This does nothing on its own unless you enable switching of profiles when HDR/SDR change is detected."/>
         <CheckBox x:Name="ApplyUponSwitchingToSDRHDRCheckbox" Content="Apply respective gamma file upon switching to HDR/SDR" HorizontalAlignment="Left" Margin="19,136,0,0" VerticalAlignment="Top" Checked="ApplyUponSwitchingToSDRHDRCheckbox_CheckedUnchecked" Unchecked="ApplyUponSwitchingToSDRHDRCheckbox_CheckedUnchecked" ToolTip="Use the polling interval to detect whether the system has switched to/from SDR/HDR and applies the loaded gamma setting files. If no gamma file is loaded, it will simply not apply." Grid.ColumnSpan="2"/>
         <TextBox x:Name="PollingIntervalTextBox" HorizontalAlignment="Left" Margin="180,158,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120" TextChanged="PollingIntervalTextBox_TextChanged"/>
@@ -27,5 +23,6 @@
         <Button x:Name="ApplySettingsButton" Content="Apply Settings Now" HorizontalAlignment="Right" Margin="0,0,18,10" VerticalAlignment="Bottom" Click="ApplySettingsButton_Click" Height="26" Width="134" IsEnabled="False" Grid.ColumnSpan="2" ToolTip="Restarting the app has the same effect since settings are auto-saved."/>
         <CheckBox x:Name="StartMinimizedCheckBox" Content="Start app minimized" Checked="StartMinimizedCheckBox_CheckedUnchecked" Unchecked="StartMinimizedCheckBox_CheckedUnchecked" Margin="130,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Whether to start the app minimized when opening (through any method)."/>
         <CheckBox x:Name="ReduceCPUUsageCheckBox" Content="Reduce CPU Usage (May crash if monitor config changes)" Checked="ReduceCPUUsageCheckBox_CheckedUnchecked" Unchecked="ReduceCPUUsageCheckBox_CheckedUnchecked" Margin="19,203,0,0" ToolTip="If checked, monitor information will be cached once upon app start. This means the app may crash if the monitor config changes during use (e.g. unplug/re-plug)." Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="WARNING: Ensure Windows Automatic Color Management (ACM)&#xD;&#xA;is disabled; otherwise, it will break SDR/HDR detection." HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top" Width="381" Height="54"/>
     </Grid>
 </Window>
