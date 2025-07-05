@@ -93,23 +93,12 @@ namespace GammaTuner
 
         ChartGamma GetDefaultChartGamma()
         {
-            if (gamma.useSystemGamma)
-            {
-                var ramp = gamma.GetGammaRampFromSystem();
-                int[] rampR = Array.ConvertAll(ramp.Red, val => checked((int)val));
-                int[] rampG = Array.ConvertAll(ramp.Green, val => checked((int)val));
-                int[] rampB = Array.ConvertAll(ramp.Blue, val => checked((int)val));
+            var ramp = gamma.GetZeroedGammaRamp();
+            int[] rampR = Array.ConvertAll(ramp.Red, val => checked((int)val));
+            int[] rampG = Array.ConvertAll(ramp.Green, val => checked((int)val));
+            int[] rampB = Array.ConvertAll(ramp.Blue, val => checked((int)val));
 
-                return new ChartGamma(rampR, rampG, rampB);
-            } else
-            {
-                var ramp = gamma.GetZeroedGammaRamp();
-                int[] rampR = Array.ConvertAll(ramp.Red, val => checked((int)val));
-                int[] rampG = Array.ConvertAll(ramp.Green, val => checked((int)val));
-                int[] rampB = Array.ConvertAll(ramp.Blue, val => checked((int)val));
-
-                return new ChartGamma(rampR, rampG, rampB);
-            }
+            return new ChartGamma(rampR, rampG, rampB);
         }
         public record ChartState
         {
@@ -602,15 +591,9 @@ namespace GammaTuner
                 instantApply = cb.IsChecked == true;
         }
 
-        private void UseSystemGammaCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (sender is CheckBox cb)
-                gamma.useSystemGamma = cb.IsChecked == true;
-        }
-
         private void ApplyDefaultGamma_Click(object sender, RoutedEventArgs e)
         {
-            gamma.RevertGamma();
+            gamma.RevertGammaToUnity();
         }
 
         private void ImportCurveButton_Click(object sender, RoutedEventArgs e)

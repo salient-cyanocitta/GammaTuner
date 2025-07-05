@@ -15,16 +15,21 @@ namespace GammaTuner
 {
     public class Gamma
     {
-        //assuming that initializing this pulls from the system and creates a weird gamma ramp with a spike and a zero that's not truly zero
-        private static readonly DisplayGammaRamp DefaultSystemGammaRamp = new DisplayGammaRamp();
 
         public Gamma(bool useCachedMonitor) {
             this.useCachedMonitor = useCachedMonitor;
         }
-        public bool useSystemGamma;
         public bool useCachedMonitor;
 
-        public DisplayGammaRamp GetGammaRampFromSystem() { return DefaultSystemGammaRamp; }
+        //apparently windows treats 0-255 >> 8 as the unity (default) gamma ramp
+        public DisplayGammaRamp GetWindowsUnityGammaRamp() {
+            var gamma = new ushort[256];
+            for (int i = 0; i < gamma.Length; i++)
+            {
+                gamma[i] = (ushort)(i << 8);
+            }
+            return new DisplayGammaRamp(gamma, gamma, gamma);
+        }
 
         public DisplayGammaRamp GetZeroedGammaRamp()
         {
@@ -40,19 +45,11 @@ namespace GammaTuner
         }
 
         Display? cachedWindowsDisplay;
-        public void RevertGamma()
+        public void RevertGammaToUnity()
         {
             if (useCachedMonitor && cachedWindowsDisplay != null)
             {
-                if (useSystemGamma)
-                {
-                    cachedWindowsDisplay.GammaRamp = DefaultSystemGammaRamp;
-                }
-                else
-                {
-                    cachedWindowsDisplay.GammaRamp = GetZeroedGammaRamp();
-                }
-                return;
+                cachedWindowsDisplay.GammaRamp = GetWindowsUnityGammaRamp();
             }
 
             Display? windowsDisplay = GetWindowsDisplay();
@@ -62,16 +59,10 @@ namespace GammaTuner
                 throw new Exception("No display found. Cannot revert gamma.");
             }
 
-            if (useSystemGamma)
-            {
-                windowsDisplay.GammaRamp = DefaultSystemGammaRamp;
-            } else
-            {
-                windowsDisplay.GammaRamp = GetZeroedGammaRamp();
-            }
+            windowsDisplay.GammaRamp = GetWindowsUnityGammaRamp();
         }
 
-        private bool SetGamma(ushort[] gammaR, ushort[] gammaG, ushort[] gammaB)
+        private bool SetSystemGamma(ushort[] gammaR, ushort[] gammaG, ushort[] gammaB)
         {
             if (gammaR.Length != 256)
             {
@@ -211,7 +202,7 @@ namespace GammaTuner
             int[] rampG = (int[])chartGamma.G.Clone();
             int[] rampB = (int[])chartGamma.B.Clone();
 
-            var defaultGamma = useSystemGamma ? GetGammaRampFromSystem() : GetZeroedGammaRamp();
+            var defaultGamma = GetZeroedGammaRamp();
 
             for (int i = 0; i <= 255; i++)
             {
@@ -245,7 +236,7 @@ namespace GammaTuner
             ushort[] _rampG = Array.ConvertAll(rampG, val => checked((ushort)val));
             ushort[] _rampB = Array.ConvertAll(rampB, val => checked((ushort)val));
 
-            SetGamma(_rampR, _rampG, _rampB);
+            SetSystemGamma(_rampR, _rampG, _rampB);
         }
     }
 }
