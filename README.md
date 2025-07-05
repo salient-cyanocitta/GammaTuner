@@ -33,6 +33,7 @@ Additionally, most existing methods require you to manually undo them if you swi
 - [NVCP Toggle](https://github.com/mcgrizzz/NVCP_Toggle) for code inspiration.
 - [ScottPlot](https://github.com/ScottPlot/ScottPlot)
 - [WindowsDisplayAPI](https://github.com/falahati/WindowsDisplayAPI)
+- [The StackOverflow user who made a function to detect HDR/SDR.](https://stackoverflow.com/questions/66155083/windows-api-to-get-whether-hdrhigh-dynamic-range-is-active)
 
 ## Disclaimers
 This app is experimental. I take no responsibility if it renders your system unusable. 
