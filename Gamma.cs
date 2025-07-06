@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WindowsDisplayAPI;
 using System.Windows;
+using WindowsDisplayAPI;
+using WindowsDisplayAPI.DisplayConfig;
 
 namespace GammaTuner
 {
@@ -33,6 +34,7 @@ namespace GammaTuner
 
         public DisplayGammaRamp GetZeroedGammaRamp()
         {
+
             var gamma = new ushort[256];
 
             for (int i = 0; i < gamma.Length; i++)
@@ -52,7 +54,7 @@ namespace GammaTuner
                 cachedWindowsDisplay.GammaRamp = GetWindowsUnityGammaRamp();
             }
 
-            Display? windowsDisplay = GetWindowsDisplay();
+            Display? windowsDisplay = GetPrimaryDisplay();
             cachedWindowsDisplay = windowsDisplay;
             if (windowsDisplay == null)
             {
@@ -109,7 +111,7 @@ namespace GammaTuner
 
             try
             {
-                Display? windowsDisplay = GetWindowsDisplay();
+                Display? windowsDisplay = GetPrimaryDisplay();
                 if(windowsDisplay == null)
                 {
                     throw new Exception("No display found. Cannot set gamma.");
@@ -124,7 +126,7 @@ namespace GammaTuner
 
             return true;
         }
-        private static Display? GetWindowsDisplay()
+        private static Display? GetPrimaryDisplay()
         {
             Display[] displays = Display.GetDisplays().ToArray();
             foreach (Display display in displays)

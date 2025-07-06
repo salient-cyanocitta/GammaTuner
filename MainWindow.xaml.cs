@@ -237,7 +237,29 @@ namespace GammaTuner
             WpfPlot1.KeyDown += WpfPlot1_KeyDown;
             WpfPlot1.KeyUp += WpfPlot1_KeyUp;
 
+            ApplyScaling();
+
             WpfPlot1.Refresh();
+        }
+
+        void ApplyScaling()
+        {
+            foreach (var axis in WpfPlot1.Plot.Axes.GetXAxes())
+            {
+                axis.TickLabelStyle.FontSize *= WpfPlot1.DisplayScale;
+            }
+            foreach (var axis in WpfPlot1.Plot.Axes.GetYAxes())
+            {
+                axis.TickLabelStyle.FontSize *= WpfPlot1.DisplayScale;
+            }
+            foreach (var plottable in WpfPlot1.Plot.GetPlottables())
+            {
+                if (plottable is ScottPlot.Plottables.Scatter scatter)
+                {
+                    scatter.MarkerSize *= WpfPlot1.DisplayScale;
+                    scatter.LineWidth *= WpfPlot1.DisplayScale;
+                }
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -396,7 +418,7 @@ namespace GammaTuner
                 dragCircle = null;
             }
 
-            Pixel mousePixel = new(position.X, position.Y);
+            Pixel mousePixel = new(position.X * WpfPlot1.DisplayScale, position.Y * WpfPlot1.DisplayScale);
             Coordinates mouseLocation = WpfPlot1.Plot.GetCoordinates(mousePixel);
 
             var xRange = Math.Abs(WpfPlot1.Plot.Axes.GetLimits().XRange.Span);
@@ -430,7 +452,7 @@ namespace GammaTuner
 
             WpfPlot1.Refresh();
 
-            Pixel mousePixel = new(mousePosition.X, mousePosition.Y);
+            Pixel mousePixel = new(mousePosition.X * WpfPlot1.DisplayScale, mousePosition.Y * WpfPlot1.DisplayScale);
             Coordinates mouseLocation = WpfPlot1.Plot.GetCoordinates(mousePixel);
             DataPoint nearestR = ScatterR.Data.GetNearest(mouseLocation, WpfPlot1.Plot.LastRender);
             DataPoint nearestG = ScatterR.Data.GetNearest(mouseLocation, WpfPlot1.Plot.LastRender);
@@ -472,7 +494,7 @@ namespace GammaTuner
         }
         void SetDraggedPoints(Point mousePosition)
         {
-            Pixel mousePixel = new(mousePosition.X, mousePosition.Y);
+            Pixel mousePixel = new(mousePosition.X * WpfPlot1.DisplayScale, mousePosition.Y * WpfPlot1.DisplayScale);
             Coordinates mouseLocation = WpfPlot1.Plot.GetCoordinates(mousePixel);
             DataPoint nearestR = ScatterR.Data.GetNearest(mouseLocation, WpfPlot1.Plot.LastRender);
             DataPoint nearestG = ScatterR.Data.GetNearest(mouseLocation, WpfPlot1.Plot.LastRender);
