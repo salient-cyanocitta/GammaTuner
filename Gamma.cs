@@ -64,7 +64,9 @@ namespace GammaTuner
             windowsDisplay.GammaRamp = GetWindowsUnityGammaRamp();
         }
 
-        private bool SetSystemGamma(ushort[] gammaR, ushort[] gammaG, ushort[] gammaB)
+        //According to MS Learn, GDI32's SetDeviceGammaRamp function "uses heuristics" to determine whether the gamma can be set, and the error
+        //given is not very meaningful, so we are going with a success/error tuple here.
+        private (bool success, Exception? exceptionObject) TrySetSystemGamma(ushort[] gammaR, ushort[] gammaG, ushort[] gammaB)
         {
             if (gammaR.Length != 256)
             {
@@ -105,8 +107,14 @@ namespace GammaTuner
 
             if(useCachedMonitor && cachedWindowsDisplay != null)
             {
-                cachedWindowsDisplay.GammaRamp = new DisplayGammaRamp(gammaR, gammaG, gammaB);
-                return true;
+                try
+                {
+                    cachedWindowsDisplay.GammaRamp = new DisplayGammaRamp(gammaR, gammaG, gammaB);
+                } catch (Exception e)
+                {
+                    return (false, e);
+                }   
+                return (true, null);
             }
 
             try
@@ -120,12 +128,13 @@ namespace GammaTuner
                 windowsDisplay.GammaRamp = new DisplayGammaRamp(gammaR, gammaG, gammaB);
             } catch (Exception e)
             {
-                throw new Exception("Error occured while attempting to set gamma: " + e);
+                return (false, e);
             }
 
 
-            return true;
+            return (true, null);
         }
+
         private static Display? GetPrimaryDisplay()
         {
             Display[] displays = Display.GetDisplays().ToArray();
@@ -198,7 +207,7 @@ namespace GammaTuner
             return model;
         }
 
-        public void SetGammaWithOffsets(ChartGamma chartGamma, double gammaOffsetR, double gammaOffsetG, double gammaOffsetB)
+        public (bool success, Exception? exceptionObject) TrySetGammaWithOffsets(ChartGamma chartGamma, double gammaOffsetR, double gammaOffsetG, double gammaOffsetB)
         {
             int[] rampR = (int[])chartGamma.R.Clone();
             int[] rampG = (int[])chartGamma.G.Clone();
@@ -238,7 +247,7 @@ namespace GammaTuner
             ushort[] _rampG = Array.ConvertAll(rampG, val => checked((ushort)val));
             ushort[] _rampB = Array.ConvertAll(rampB, val => checked((ushort)val));
 
-            SetSystemGamma(_rampR, _rampG, _rampB);
+            return TrySetSystemGamma(_rampR, _rampG, _rampB);
         }
     }
 }

@@ -88,12 +88,12 @@ namespace GammaTuner
             mainWindow.UpdateIconBasedOnHDR();
             if (isHDR && HDRGammaModel != null)
             {
-                gamma.SetGammaWithOffsets(new ChartGamma(HDRGammaModel.R, HDRGammaModel.G, HDRGammaModel.B),
+                gamma.TrySetGammaWithOffsets(new ChartGamma(HDRGammaModel.R, HDRGammaModel.G, HDRGammaModel.B),
                     HDRGammaModel.GammaOffsetR, HDRGammaModel.GammaOffsetG, HDRGammaModel.GammaOffsetB);
             }
             else if (!isHDR && SDRGammaModel != null)
             {
-                gamma.SetGammaWithOffsets(new ChartGamma(SDRGammaModel.R, SDRGammaModel.G, SDRGammaModel.B),
+                gamma.TrySetGammaWithOffsets(new ChartGamma(SDRGammaModel.R, SDRGammaModel.G, SDRGammaModel.B),
                     SDRGammaModel.GammaOffsetR, SDRGammaModel.GammaOffsetG, SDRGammaModel.GammaOffsetB);
             }
         }

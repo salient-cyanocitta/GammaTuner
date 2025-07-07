@@ -46,6 +46,9 @@
 </ItemGroup>
 
 <ItemGroup>
+  <None Update="confusionIcon.ico">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
   <None Update="defaultGammaSettings.json">
     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </None>

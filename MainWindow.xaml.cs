@@ -591,7 +591,7 @@ namespace GammaTuner
 
         private void SetGamma()
         {
-            gamma.SetGammaWithOffsets(
+            gamma.TrySetGammaWithOffsets(
                 CurrentChartState.Gamma,
                 CurrentChartState.GammaOffsetR,
                 CurrentChartState.GammaOffsetG,
