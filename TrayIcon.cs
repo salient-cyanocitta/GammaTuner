@@ -29,7 +29,7 @@ namespace GammaTuner
             {
                 Icon = new Icon("defaultIcon.ico"),
                 Visible = true,
-                Text = "NVIDIAGammaCurve",
+                Text = "GammaTuner",
                 ContextMenuStrip = new ContextMenuStrip()
             };
 
@@ -45,13 +45,13 @@ namespace GammaTuner
             if (isHDR)
             {
                 _notifyIcon.Icon = new Icon("hdrIcon.ico");
-                _notifyIcon.Text = "NVIDIAGammaCurve - HDR Detected (or Advanced Color is enabled)";
+                _notifyIcon.Text = "GammaTuner - HDR Detected (or Advanced Color is enabled)";
 
             }
             else
             {
                 _notifyIcon.Icon = new Icon("sdrIcon.ico");
-                _notifyIcon.Text = "NVIDIAGammaCurve - SDR Detected";
+                _notifyIcon.Text = "GammaTuner - SDR Detected";
 
             }
         }
@@ -59,7 +59,7 @@ namespace GammaTuner
         public void UseDefaultIcon()
         {
             _notifyIcon.Icon = new Icon("defaultIcon.ico");
-            _notifyIcon.Text = "NVIDIAGammaCurve";
+            _notifyIcon.Text = "GammaTuner";
 
         }
 

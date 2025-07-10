@@ -14,7 +14,7 @@ namespace GammaTuner
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            const string mutexName = "YourUniqueAppName_Mutex";
+            const string mutexName = "GammaTuner_Mutex";
 
             bool createdNew;
             _mutex = new Mutex(true, mutexName, out createdNew);
@@ -38,10 +38,10 @@ namespace GammaTuner
                 Debug.WriteLine($"Unhandled exception: {e}");
                 MessageBox.Show(
                 $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
-                "NVIDIAGammaCurve Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 //System.Windows.Forms.MessageBox.Show(
                 //    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ExceptionObject)}", 
-                //    "NVIDIAGammaCurve Error",
+                //    "GammaTuner Error",
                 //    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error, System.Windows.Forms.MessageBoxDefaultButton.Button1);
             };
 
@@ -50,21 +50,21 @@ namespace GammaTuner
                 Debug.WriteLine($"Dispatcher Unhandled Exception: {e}");
                 MessageBox.Show(
                 $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.Exception.ToString())}",
-                "NVIDIAGammaCurve Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
             };
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
                 Debug.WriteLine($"Current Domain Unhandle Exception: {e}");
                 MessageBox.Show(
                 $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ExceptionObject.ToString())}",
-                "NVIDIAGammaCurve Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
             };
             TaskScheduler.UnobservedTaskException += (sender, e) =>
             {
                 Debug.WriteLine($"Unobserved Task Exception: {e}");
                 MessageBox.Show(
                 $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.Exception.ToString())}",
-                "NVIDIAGammaCurve Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
             };
         }
     }

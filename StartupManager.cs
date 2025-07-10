@@ -4,7 +4,7 @@ using File = System.IO.File;
 
 public static class StartupShortcutManager
 {
-    private static string ShortcutName => "NvidiaGammaCurve.lnk";
+    private static string ShortcutName => "GammaTuner.lnk";
     private static string StartupFolderPath => Environment.GetFolderPath(Environment.SpecialFolder.Startup);
     private static string ShortcutPath => Path.Combine(StartupFolderPath, ShortcutName);
 
@@ -13,13 +13,13 @@ public static class StartupShortcutManager
         if (File.Exists(ShortcutPath))
             return;
 
-        string exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NvidiaGammaCurve.exe");
+        string exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GammaTuner.exe");
 
         var shell = new WshShell();
         IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(ShortcutPath);
         shortcut.TargetPath = exePath;
         shortcut.WorkingDirectory = Path.GetDirectoryName(exePath);
-        shortcut.Description = "Launch NvidiaGammaCurve at startup";
+        shortcut.Description = "Launch GammaTuner at startup";
         shortcut.Save();
     }
 
