@@ -188,8 +188,6 @@ namespace GammaTuner
                 PollingIntervalTextBox.Text = settings.Settings.PollingInterval.ToString();
             if (StartMinimizedCheckBox != null)
                 StartMinimizedCheckBox.IsChecked = settings.Settings.StartMinimized;
-            if (ReduceCPUUsageCheckBox != null)
-                ReduceCPUUsageCheckBox.IsChecked = settings.Settings.ReduceCPUUsage;
         }
 
         private void ApplyUponSwitchingToSDRHDRCheckbox_CheckedUnchecked(object sender, RoutedEventArgs e)
@@ -234,14 +232,6 @@ namespace GammaTuner
         {
             if (settings == null) return;
             settings.Settings.StartMinimized = StartMinimizedCheckBox.IsChecked == true;
-            settings.Save();
-            UpdateApplyButton();
-        }
-
-        private void ReduceCPUUsageCheckBox_CheckedUnchecked(object sender, RoutedEventArgs e)
-        {
-            if (settings == null) return;
-            settings.Settings.ReduceCPUUsage = ReduceCPUUsageCheckBox.IsChecked == true;
             settings.Save();
             UpdateApplyButton();
         }

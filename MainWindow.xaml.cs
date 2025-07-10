@@ -185,7 +185,7 @@ namespace GammaTuner
             settings = new AppSettings();
             settings.Load();
 
-            gamma = new Gamma(settings.Settings.ReduceCPUUsage);
+            gamma = new Gamma();
 
             InitializeTrayIcon();
 

@@ -8,6 +8,5 @@
   "SDRSettingsFilePath": "",
   "ApplyUponSwitchingToSDRHDR": false,
   "ContinuouslyReapply": false,
-  "PollingInterval": 1000,
-  "ReduceCPUUsage": true
+  "PollingInterval": 3000
 }

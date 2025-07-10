@@ -17,11 +17,6 @@ namespace GammaTuner
     public class Gamma
     {
 
-        public Gamma(bool useCachedMonitor) {
-            this.useCachedMonitor = useCachedMonitor;
-        }
-        public bool useCachedMonitor;
-
         //apparently windows treats 0-255 >> 8 as the unity (default) gamma ramp
         public DisplayGammaRamp GetWindowsUnityGammaRamp() {
             var gamma = new ushort[256];
@@ -45,17 +40,10 @@ namespace GammaTuner
 
             return new DisplayGammaRamp(gamma, gamma, gamma);
         }
-
-        Display? cachedWindowsDisplay;
         public void RevertGammaToUnity()
         {
-            if (useCachedMonitor && cachedWindowsDisplay != null)
-            {
-                cachedWindowsDisplay.GammaRamp = GetWindowsUnityGammaRamp();
-            }
 
             Display? windowsDisplay = GetPrimaryDisplay();
-            cachedWindowsDisplay = windowsDisplay;
             if (windowsDisplay == null)
             {
                 throw new Exception("No display found. Cannot revert gamma.");
@@ -105,18 +93,6 @@ namespace GammaTuner
                 }
             }
 
-            if(useCachedMonitor && cachedWindowsDisplay != null)
-            {
-                try
-                {
-                    cachedWindowsDisplay.GammaRamp = new DisplayGammaRamp(gammaR, gammaG, gammaB);
-                } catch (Exception e)
-                {
-                    return (false, e);
-                }   
-                return (true, null);
-            }
-
             try
             {
                 Display? windowsDisplay = GetPrimaryDisplay();
@@ -124,7 +100,6 @@ namespace GammaTuner
                 {
                     throw new Exception("No display found. Cannot set gamma.");
                 }
-                cachedWindowsDisplay = windowsDisplay;
                 windowsDisplay.GammaRamp = new DisplayGammaRamp(gammaR, gammaG, gammaB);
             } catch (Exception e)
             {
