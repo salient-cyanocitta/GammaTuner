@@ -35,10 +35,17 @@ namespace GammaTuner
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
-                Debug.WriteLine($"Unhandled exception: {e}");
-                MessageBox.Show(
-                $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
-                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Debug.WriteLine($"Unhandled exception: {e}");
+                    MessageBox.Show(
+                    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
+                    "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Error($"Unhandled exception: {Utils.RedactFilePathsFromString(e.ToString())}");
+                } catch (Exception )
+                {
+                    //prevent infinite loop if the error occurs in the exception handler itself
+                }
                 //System.Windows.Forms.MessageBox.Show(
                 //    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ExceptionObject)}", 
                 //    "GammaTuner Error",
@@ -47,24 +54,48 @@ namespace GammaTuner
 
             Application.Current.DispatcherUnhandledException += (sender, e) =>
             {
-                Debug.WriteLine($"Dispatcher Unhandled Exception: {e}");
-                MessageBox.Show(
-                $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.Exception.ToString())}",
-                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Debug.WriteLine($"Dispatcher Unhandled exception: {e}");
+                    MessageBox.Show(
+                    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
+                    "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Error($"Unhandled exception: {Utils.RedactFilePathsFromString(e.ToString())}");
+                }
+                catch (Exception)
+                {
+                    //prevent infinite loop if the error occurs in the exception handler itself
+                }
             };
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
-                Debug.WriteLine($"Current Domain Unhandle Exception: {e}");
-                MessageBox.Show(
-                $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ExceptionObject.ToString())}",
-                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Debug.WriteLine($"CurrentDomain Unhandled exception: {e}");
+                    MessageBox.Show(
+                    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
+                    "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Error($"Unhandled exception: {Utils.RedactFilePathsFromString(e.ToString())}");
+                }
+                catch (Exception)
+                {
+                    //prevent infinite loop if the error occurs in the exception handler itself
+                }
             };
             TaskScheduler.UnobservedTaskException += (sender, e) =>
             {
-                Debug.WriteLine($"Unobserved Task Exception: {e}");
-                MessageBox.Show(
-                $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.Exception.ToString())}",
-                "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Debug.WriteLine($"Unobserved Task exception: {e}");
+                    MessageBox.Show(
+                    $"An unexpected error occurred: {Utils.RedactFilePathsFromString(e.ToString())}",
+                    "GammaTuner Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Error($"Unhandled exception: {Utils.RedactFilePathsFromString(e.ToString())}");
+                }
+                catch (Exception)
+                {
+                    //prevent infinite loop if the error occurs in the exception handler itself
+                }
             };
         }
     }
