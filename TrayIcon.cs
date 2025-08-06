@@ -63,6 +63,12 @@ namespace GammaTuner
 
         }
 
+        public void UseConfusionIcon(string msg)
+        {
+            _notifyIcon.Icon = new Icon("confusionIcon.ico");
+            _notifyIcon.Text = msg;
+        }
+
         private void ShowWindow()
         {
             Show();

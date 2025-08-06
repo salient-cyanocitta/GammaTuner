@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.8" />
     <PackageReference Include="ScottPlot" Version="5.0.55" />
     <PackageReference Include="ScottPlot.WPF" Version="5.0.55" />
   </ItemGroup>

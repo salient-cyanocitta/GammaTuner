@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace GammaTuner
 {
-    public  class Backend
+    public class Backend
     {
         private MainWindow mainWindow;
         private AppSettings appSettings;
@@ -101,18 +103,26 @@ namespace GammaTuner
         bool prevIsHDR = false;
         private void OnRefresh(object? state)
         {
-            bool isHDR = MonitorStatus.IsHDREnabled();
-            if (isHDR != prevIsHDR)
+            try
             {
-                Debug.WriteLine($"HDR status changed: {prevIsHDR} -> {isHDR}");
-                prevIsHDR = isHDR;
-                if (appSettings.Settings.ApplyUponSwitchingToSDRHDR)
+                bool isHDR = MonitorStatus.IsHDREnabled();
+                if (isHDR != prevIsHDR)
+                {
+                    Debug.WriteLine($"HDR status changed: {prevIsHDR} -> {isHDR}");
+                    prevIsHDR = isHDR;
+                    if (appSettings.Settings.ApplyUponSwitchingToSDRHDR)
+                    {
+                        ApplyRespectiveGammaAccordingToHDROrSDR();
+                    }
+                }
+                else if (appSettings.Settings.ContinuouslyReapply)
                 {
                     ApplyRespectiveGammaAccordingToHDROrSDR();
                 }
-            } else if (appSettings.Settings.ContinuouslyReapply)
+            } catch (Win32Exception e)
             {
-                ApplyRespectiveGammaAccordingToHDROrSDR();
+                mainWindow.UseConfusionIcon($"Win32 Error; Check logs for details");
+                Log.Error(e.ToString());
             }
         }
         
