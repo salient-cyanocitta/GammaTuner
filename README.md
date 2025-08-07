@@ -5,10 +5,12 @@
 - Can be set to run at startup.
 - The app uses WindowsDisplayAPI, so it should support any GPU.
 - This app was mostly designed to fix black crush by hand; there will be a bit of a learning curve. Will results be precise? Not really. Can it still improve things to YOUR desire? Maybe.
-<figure>
-<img src="(https://github.com/user-attachments/assets/3f526756-13e9-4f7b-9792-3f22b85d18cc)" alt=""/>
-<figcaption>The curve in this image was used to improve the black crush on my INNOCN 34M1R.</figcaption>
-</figure>
+  <div>
+<img src="https://github.com/user-attachments/assets/3f526756-13e9-4f7b-9792-3f22b85d18cc" alt=""/>
+  </div>
+  <div>
+The curve in the above image was used to improve the black crush on my INNOCN 34M1R.
+</div>
 
 ## Why this app?
 Black crush is a common issue for many monitors. Common fixes include changing settings such as gamma, contrast, brightness, or monitor settings like "shadow detail", but these often have undesired side effects (e.g. raising the black level so you can't get pure blacks anymore). This app allows you to set the brightness at any point in the gamma table, so you can target and fix the exact brightness levels you're having trouble with. 
