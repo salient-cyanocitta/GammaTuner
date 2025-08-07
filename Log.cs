@@ -2,6 +2,7 @@
 using Serilog.Extensions.Logging;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 
 namespace GammaTuner
 {
@@ -49,6 +50,7 @@ namespace GammaTuner
                 {
                     Debug.WriteLine(message);
                 }
+                message = Utils.RedactFilePathsFromString(message);
                 switch (logLevel)
                 {
                     case LogLevel.Info:
@@ -78,15 +80,15 @@ namespace GammaTuner
 
             public void LogInformation(string message)
             {
-                logWriter.WriteLine($"[{DateTime.Now}] INFO: {message}");
+                message = Utils.RedactFilePathsFromString(message);
             }
             public void LogWarning(string message)
             {
-                logWriter.WriteLine($"[{DateTime.Now}] WARNING: {message}");
+                message = Utils.RedactFilePathsFromString(message);
             }
             public void LogError(string message)
             {
-                logWriter.WriteLine($"[{DateTime.Now}] ERROR: {message}");
+                message = Utils.RedactFilePathsFromString(message);
             }
         }
     }
