@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Useful Info - GammaTuner" Height="521" Width="575">
     <Grid>
-        <RichTextBox Margin="0,0,0,-68" TextChanged="RichTextBox_TextChanged" IsReadOnlyCaretVisible="True">
+        <RichTextBox IsDocumentEnabled="True" IsReadOnly="True" Margin="0,0,0,-68" TextChanged="RichTextBox_TextChanged" IsReadOnlyCaretVisible="True">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="ABOUT"/>
@@ -30,18 +30,24 @@
                 </Paragraph>
                 <Paragraph>
                     -
-                    <Hyperlink NavigateUri="https://www.youtube.com/watch?v=wn517192hO4" RequestNavigate="Hyperlink_RequestNavigate">
-                        HDR Black Crush Test</Hyperlink>
+                    <TextBlock>
+                        <Hyperlink NavigateUri="https://www.youtube.com/watch?v=wn517192hO4" RequestNavigate="Hyperlink_RequestNavigate">
+                            HDR Black Crush Test</Hyperlink>
+                    </TextBlock>
                 </Paragraph>
                 <Paragraph>
                     -
-                    <Hyperlink NavigateUri="https://www.youtube.com/watch?v=z092wdyrZZQ" RequestNavigate="Hyperlink_RequestNavigate">
-                        Darkest Hour Shadow Detail Test (HDR)</Hyperlink>
+                    <TextBlock>
+                        <Hyperlink NavigateUri="https://www.youtube.com/watch?v=z092wdyrZZQ" RequestNavigate="Hyperlink_RequestNavigate">
+                            Darkest Hour Shadow Detail Test (HDR)</Hyperlink>
+                    </TextBlock>
                 </Paragraph>
                 <Paragraph>
                     -
-                    <Hyperlink NavigateUri="https://youtu.be/FJLAnvSCieA?si=wy0914MaCfn_xMeO" RequestNavigate="Hyperlink_RequestNavigate">
-                        Kyoto, Japan - 21:9 Ultrawide 4K HDR - Gion at Night - Cinematic Short</Hyperlink>
+                    <TextBlock>
+                        <Hyperlink NavigateUri="https://youtu.be/FJLAnvSCieA?si=wy0914MaCfn_xMeO" RequestNavigate="Hyperlink_RequestNavigate">
+                            Kyoto, Japan - 21:9 Ultrawide 4K HDR - Gion at Night - Cinematic Short</Hyperlink>
+                    </TextBlock>
                 </Paragraph>
                 <Paragraph>
                     - Aside from the videos, find some (very dark) test images and open them on both monitors. If you don't have them, you can take 
@@ -49,7 +55,9 @@
                 </Paragraph>
                 <Paragraph>
                     - Here's a selection of test images from various games:
-                    <Hyperlink NavigateUri="https://drive.google.com/file/d/1WhJdO8Fv5SEKEFAtqgdD1i7SjCMx_rQw/view?usp=sharing" RequestNavigate="Hyperlink_RequestNavigate">Google Drive</Hyperlink>
+                    <TextBlock>
+                        <Hyperlink NavigateUri="https://drive.google.com/file/d/1WhJdO8Fv5SEKEFAtqgdD1i7SjCMx_rQw/view?usp=sharing" RequestNavigate="Hyperlink_RequestNavigate">Google Drive</Hyperlink>
+                    </TextBlock>
                 </Paragraph>
                 <Paragraph>
                     - Viewing HDR images: Windows Photos might already be able to display HDR Screenshots (.jxr), but I prefer the tool "HDR + WCG Image Viewer."

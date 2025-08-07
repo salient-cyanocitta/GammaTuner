@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,12 @@ namespace GammaTuner
 
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.Uri.ToString());
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri)
+            {
+                UseShellExecute = true,
+            });
+            e.Handled = true;
         }
+
     }
 }
