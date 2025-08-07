@@ -29,6 +29,9 @@ namespace GammaTuner
             if (err != 0)
                 throw new Win32Exception(err);
 
+            if (paths.Length == 0)
+                throw new Exception("No displays were found");
+
             foreach (var path in paths)
             {
                 // get display name
@@ -60,14 +63,9 @@ namespace GammaTuner
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-
             }
 
-            throw new Exception("No displays were found");
+            return false;
         }
 
         private enum DISPLAYCONFIG_DEVICE_INFO_TYPE
