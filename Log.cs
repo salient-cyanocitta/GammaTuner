@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Serilog;
+using Serilog.Extensions.Logging;
 using System.Diagnostics;
+using System.IO;
 
 namespace GammaTuner
 {
@@ -28,19 +30,18 @@ namespace GammaTuner
 
         class LogInternal
         {
-            private static ILogger logger
+            private static Logger logger
             {
                 get
                 {
                     if (_logger == null)
                     {
-                        using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
-                        _logger = factory.CreateLogger("GammaTuner");
+                        _logger = new Logger();
                     }
                     return _logger;
                 }
             }
-            private static ILogger? _logger;
+            private static Logger? _logger;
 
             public static void Log(string message, LogLevel logLevel, bool debugWriteLine = true)
             {
@@ -60,6 +61,32 @@ namespace GammaTuner
                         logger.LogError(message);
                         break;
                 }
+            }
+        }
+
+        class Logger
+        {
+            StreamWriter logWriter;
+            public Logger()
+            {
+                logWriter = new StreamWriter("GammaTuner.log", true)
+                {
+                    AutoFlush = true
+                };
+                logWriter.WriteLine($"[{DateTime.Now}] GammaTuner Log Started");
+            }
+
+            public void LogInformation(string message)
+            {
+                logWriter.WriteLine($"[{DateTime.Now}] INFO: {message}");
+            }
+            public void LogWarning(string message)
+            {
+                logWriter.WriteLine($"[{DateTime.Now}] WARNING: {message}");
+            }
+            public void LogError(string message)
+            {
+                logWriter.WriteLine($"[{DateTime.Now}] ERROR: {message}");
             }
         }
     }

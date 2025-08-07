@@ -28,6 +28,8 @@ namespace GammaTuner
             }
             AddExceptionEventHandlers();
 
+            Log.Info("GammaTuner Started");
+
             base.OnStartup(e);
         }
 
