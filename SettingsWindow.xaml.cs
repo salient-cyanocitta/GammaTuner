@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using Path = System.IO.Path;
 
 namespace GammaTuner
 {
@@ -234,6 +235,16 @@ namespace GammaTuner
             settings.Settings.StartMinimized = StartMinimizedCheckBox.IsChecked == true;
             settings.Save();
             UpdateApplyButton();
+        }
+
+        private void OpenLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GammaTuner.log"),
+                UseShellExecute = true
+            });
         }
     }
 }

@@ -23,5 +23,6 @@
         <Button x:Name="ApplySettingsButton" Content="Apply Settings Now" HorizontalAlignment="Right" Margin="0,0,18,10" VerticalAlignment="Bottom" Click="ApplySettingsButton_Click" Height="26" Width="134" IsEnabled="False" Grid.ColumnSpan="2" ToolTip="Restarting the app has the same effect since settings are auto-saved."/>
         <CheckBox x:Name="StartMinimizedCheckBox" Content="Start app minimized" Checked="StartMinimizedCheckBox_CheckedUnchecked" Unchecked="StartMinimizedCheckBox_CheckedUnchecked" Margin="130,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Whether to start the app minimized when opening (through any method)."/>
         <Label Content="WARNING: Ensure Windows Automatic Color Management (ACM)&#xD;&#xA;is disabled; otherwise, it will break SDR/HDR detection." HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top" Width="381" Height="54"/>
+        <Button x:Name="OpenLogFileButton" Content="Open Log File" HorizontalAlignment="Left" Margin="19,0,0,10" VerticalAlignment="Bottom" Width="101" Height="26" Click="OpenLogButton_Click"/>
     </Grid>
 </Window>
