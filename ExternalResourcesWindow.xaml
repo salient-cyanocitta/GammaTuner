@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GammaTuner"
         mc:Ignorable="d"
-        Title="Useful Info - GammaTuner" Height="521" Width="575">
+        Title="Useful Info - GammaTuner" Height="653" Width="575">
     <Grid>
-        <RichTextBox IsDocumentEnabled="True" IsReadOnly="True" Margin="0,0,0,-68" TextChanged="RichTextBox_TextChanged" IsReadOnlyCaretVisible="True">
+        <RichTextBox x:Name="MainTextBox" IsDocumentEnabled="True" IsReadOnly="True" TextChanged="RichTextBox_TextChanged" IsReadOnlyCaretVisible="True" FontFamily="Calibri" FontSize="14" Margin="15,15,15,15">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="ABOUT"/>

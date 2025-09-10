@@ -20,9 +20,16 @@ namespace GammaTuner
     /// </summary>
     public partial class ExternalResourcesWindow : Window
     {
-        public ExternalResourcesWindow()
+        public ExternalResourcesWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.ThemeMode = mainWindow.ThemeMode;
+
+            var rtb = this.MainTextBox;
+            TextRange range = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
+            range.ApplyPropertyValue(TextElement.FontFamilyProperty, new FontFamily("Calibri"));
+            range.ApplyPropertyValue(TextElement.FontSizeProperty, 14 * (96.0 / 72.0));
+
         }
 
         private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)

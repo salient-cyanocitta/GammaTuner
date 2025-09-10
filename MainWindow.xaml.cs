@@ -748,7 +748,7 @@ namespace GammaTuner
 
         private void UsefulInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            new ExternalResourcesWindow().ShowDialog();
+            new ExternalResourcesWindow(this).Show();
         }
 
         private void SliderInteractionFinished(object sender, RoutedEventArgs e)
