@@ -185,6 +185,8 @@ namespace GammaTuner
             settings = new AppSettings();
             settings.Load();
 
+            ThemeMode = settings.Settings.DarkMode ? ThemeMode.Dark : ThemeMode.Light;
+
             gamma = new Gamma();
 
             InitializeTrayIcon();

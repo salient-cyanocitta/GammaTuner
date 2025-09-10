@@ -42,6 +42,8 @@ namespace GammaTuner
 
             InitializeComponent();
             ApplySettingsToUI();
+
+            ThemeMode = mainWindow.ThemeMode;
         }
 
         void UpdateApplyButton()
@@ -189,6 +191,8 @@ namespace GammaTuner
                 PollingIntervalTextBox.Text = settings.Settings.PollingInterval.ToString();
             if (StartMinimizedCheckBox != null)
                 StartMinimizedCheckBox.IsChecked = settings.Settings.StartMinimized;
+            if (DarkModeCheckBox != null)
+                DarkModeCheckBox.IsChecked = settings.Settings.DarkMode;
         }
 
         private void ApplyUponSwitchingToSDRHDRCheckbox_CheckedUnchecked(object sender, RoutedEventArgs e)
@@ -245,6 +249,19 @@ namespace GammaTuner
                 Arguments = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GammaTuner.log"),
                 UseShellExecute = true
             });
+        }
+
+        private void DarkModeCheckBox_CheckedUnchecked(object sender, RoutedEventArgs e)
+        {
+#pragma warning disable WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            mainWindow.ThemeMode = DarkModeCheckBox.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light;
+            this.ThemeMode = DarkModeCheckBox.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light;
+#pragma warning restore WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+
+            if (settings == null) return;
+            settings.Settings.DarkMode = DarkModeCheckBox.IsChecked == true;
+            settings.Save();
+            UpdateApplyButton();
         }
     }
 }

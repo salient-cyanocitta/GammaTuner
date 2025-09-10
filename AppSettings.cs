@@ -35,6 +35,7 @@ namespace GammaTuner
             public bool ApplyUponSwitchingToSDRHDR { get; set; } = false;
             public bool ContinuouslyReapply { get; set; } = false;
             public int PollingInterval { get; set; } = 3000;
+            public bool DarkMode { get; set; } = false;
 
             public object Clone()
             {
@@ -49,6 +50,7 @@ namespace GammaTuner
                 clone.ApplyUponSwitchingToSDRHDR = this.ApplyUponSwitchingToSDRHDR;
                 clone.ContinuouslyReapply = this.ContinuouslyReapply;
                 clone.PollingInterval = this.PollingInterval;
+                clone.DarkMode = this.DarkMode;
                 return clone;
             }
 
@@ -64,6 +66,7 @@ namespace GammaTuner
                        SDRSettingsFilePath == model.SDRSettingsFilePath &&
                        ApplyUponSwitchingToSDRHDR == model.ApplyUponSwitchingToSDRHDR &&
                        ContinuouslyReapply == model.ContinuouslyReapply &&
+                       DarkMode == model.DarkMode &&
                        PollingInterval == model.PollingInterval;
             }
 
@@ -80,6 +83,7 @@ namespace GammaTuner
                 hash.Add(ApplyUponSwitchingToSDRHDR);
                 hash.Add(ContinuouslyReapply);
                 hash.Add(PollingInterval);
+                hash.Add(DarkMode);
                 return hash.ToHashCode();
             }
         }

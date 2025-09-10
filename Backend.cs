@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
+using System.Windows;
 
 namespace GammaTuner
 {
@@ -23,7 +23,11 @@ namespace GammaTuner
 
         public void ApplySettingsAndRun()
         {
-            if(refreshTimer != null)
+#pragma warning disable WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            mainWindow.ThemeMode = appSettings.Settings.DarkMode ? ThemeMode.Dark : ThemeMode.Light;
+#pragma warning restore WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+
+            if (refreshTimer != null)
             {
                 refreshTimer.Dispose();
             }
