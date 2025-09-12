@@ -193,6 +193,8 @@ namespace GammaTuner
                 StartMinimizedCheckBox.IsChecked = settings.Settings.StartMinimized;
             if (DarkModeCheckBox != null)
                 DarkModeCheckBox.IsChecked = settings.Settings.DarkMode;
+
+            ThemeMode = settings.Settings.DarkMode == true ? ThemeMode.Dark : ThemeMode.Light;
         }
 
         private void ApplyUponSwitchingToSDRHDRCheckbox_CheckedUnchecked(object sender, RoutedEventArgs e)
@@ -253,14 +255,12 @@ namespace GammaTuner
 
         private void DarkModeCheckBox_CheckedUnchecked(object sender, RoutedEventArgs e)
         {
-#pragma warning disable WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-            mainWindow.ThemeMode = DarkModeCheckBox.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light;
-            this.ThemeMode = DarkModeCheckBox.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light;
-#pragma warning restore WPF0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-
+            //Debug.WriteLine("Dark mode checkbox changed");
             if (settings == null) return;
+            ThemeMode = DarkModeCheckBox.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light;
             settings.Settings.DarkMode = DarkModeCheckBox.IsChecked == true;
             settings.Save();
+            mainWindow.ApplyTheme(settings.Settings.DarkMode == true ? ThemeMode.Dark : ThemeMode.Light); //this needs to come after saving
             UpdateApplyButton();
         }
     }

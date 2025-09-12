@@ -35,7 +35,7 @@ namespace GammaTuner
             public bool ApplyUponSwitchingToSDRHDR { get; set; } = false;
             public bool ContinuouslyReapply { get; set; } = false;
             public int PollingInterval { get; set; } = 3000;
-            public bool DarkMode { get; set; } = false;
+            public bool DarkMode { get; set; } = true;
 
             public object Clone()
             {

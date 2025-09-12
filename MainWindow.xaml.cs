@@ -241,8 +241,57 @@ namespace GammaTuner
 
             ApplyScaling();
 
+            ApplyTheme(settings.Settings.DarkMode == true ? ThemeMode.Dark : ThemeMode.Light);
+
+            WpfPlot1.Refresh();
+
+            UpdateUI();
+        }
+
+        public void ApplyTheme(ThemeMode themeMode)
+        {
+            ThemeMode = themeMode;
+
+            if (themeMode == ThemeMode.Dark)
+            {
+                // dark palette
+                WpfPlot1.Plot.Add.Palette = new ScottPlot.Palettes.Penumbra();
+
+                // dark figure and data background
+                WpfPlot1.Plot.FigureBackground.Color = ScottPlot.Color.FromHex("#181818");
+                WpfPlot1.Plot.DataBackground.Color = ScottPlot.Color.FromHex("#1f1f1f");
+
+                // dark axis and grid
+                WpfPlot1.Plot.Axes.Color(ScottPlot.Color.FromHex("#d7d7d7"));
+                WpfPlot1.Plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#404040");
+
+                // dark legend
+                WpfPlot1.Plot.Legend.BackgroundColor = ScottPlot.Color.FromHex("#404040");
+                WpfPlot1.Plot.Legend.FontColor = ScottPlot.Color.FromHex("#d7d7d7");
+                WpfPlot1.Plot.Legend.OutlineColor = ScottPlot.Color.FromHex("#d7d7d7");
+            }
+            else
+            {
+                // light palette
+                WpfPlot1.Plot.Add.Palette = new ScottPlot.Palettes.Normal();
+
+                // light figure and data background
+                WpfPlot1.Plot.FigureBackground.Color = ScottPlot.Color.FromHex("#FFFFFF");
+                WpfPlot1.Plot.DataBackground.Color = ScottPlot.Color.FromHex("#FFFFFF");
+
+                // light axis and grid
+                WpfPlot1.Plot.Axes.Color(ScottPlot.Color.FromHex("#000000"));
+                WpfPlot1.Plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#e0e0e0");
+
+                // light legend
+                WpfPlot1.Plot.Legend.BackgroundColor = ScottPlot.Color.FromHex("#FFFFFF");
+                WpfPlot1.Plot.Legend.FontColor = ScottPlot.Color.FromHex("#000000");
+                WpfPlot1.Plot.Legend.OutlineColor = ScottPlot.Color.FromHex("#000000");
+            }
+
             WpfPlot1.Refresh();
         }
+
 
         void ApplyScaling()
         {
@@ -376,6 +425,7 @@ namespace GammaTuner
 
         private void UpdateUI()
         {
+
             WpfPlot1.Refresh();
             UpdateSliderValues();
             UpdateSliderLabels();

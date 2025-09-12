@@ -8,5 +8,6 @@
   "SDRSettingsFilePath": "",
   "ApplyUponSwitchingToSDRHDR": false,
   "ContinuouslyReapply": false,
-  "PollingInterval": 3000
+  "PollingInterval": 3000,
+  "DarkMode": true
 }
