@@ -232,6 +232,11 @@ namespace GammaTuner
             mainWindow.AppSettings.Settings = (AppSettings.SettingsModel)settings.Settings.Clone(); // Update the main window's settings reference
             mainWindow.Backend.ApplySettingsAndRun();
             prevSettings.Settings = (AppSettings.SettingsModel)settings.Settings.Clone(); // Update previous settings to current
+            //these must come after loading the gamma models
+            if (settings.Settings.LoadSettingsFileSDR && !MonitorStatus.IsHDREnabled())
+                mainWindow.SetChartStateToLoadedGamma();
+            if (settings.Settings.LoadSettingsFileHDR && MonitorStatus.IsHDREnabled())
+                mainWindow.SetChartStateToLoadedGamma();
             UpdateApplyButton();
         }
 

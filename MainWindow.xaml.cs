@@ -171,6 +171,9 @@ namespace GammaTuner
         private readonly Stopwatch appTimer = Stopwatch.StartNew();
         public double time => appTimer.Elapsed.TotalSeconds;
 
+        Gamma.GammaExportModel SDRGammaModel { get { return backend.SDRGammaModel; } }
+        Gamma.GammaExportModel HDRGammaModel { get { return backend.HDRGammaModel; } }
+
         public bool DataInitialized
         {
             get;
@@ -242,6 +245,8 @@ namespace GammaTuner
             ApplyScaling();
 
             ApplyTheme(settings.Settings.DarkMode == true ? ThemeMode.Dark : ThemeMode.Light);
+
+            SetChartStateToLoadedGamma();
 
             WpfPlot1.Refresh();
 
@@ -737,6 +742,20 @@ namespace GammaTuner
             {
                 MessageBox.Show($"Failed to import gamma curve:\n{ex.Message}", "Import Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void SetChartStateToLoadedGamma()
+        {
+            var chartState = MonitorStatus.IsHDREnabled() ? HDRGammaModel : SDRGammaModel;
+
+            if (chartState == null) return;
+
+            CurrentChartState = new ChartState(new ChartGamma(chartState.R, chartState.G, chartState.B))
+            {
+                GammaOffsetR = chartState.GammaOffsetR,
+                GammaOffsetG = chartState.GammaOffsetG,
+                GammaOffsetB = chartState.GammaOffsetB
+            };
         }
 
         void UpdateSliderLabels()
