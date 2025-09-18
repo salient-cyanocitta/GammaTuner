@@ -39,5 +39,6 @@
         <Button x:Name="MoreSettingsButton" Content="More Settings" HorizontalAlignment="Right" Margin="0,0,48,40" VerticalAlignment="Bottom" Height="39" Width="151" Click="MoreSettingsButton_Click" ToolTip="Access more settings such as auto-start and auto-apply."/>
         <Label Content="Y-Axis:&#xD;&#xA;Output&#xD;&#xA;Brightness&#xD;&#xA;(0-65535)&#xD;&#xA;" HorizontalAlignment="Left" Margin="115,201,0,221" VerticalContentAlignment="Stretch"/>
         <Button x:Name="UsefulInfoButton" Content="TIPS/USEFUL INFO" HorizontalAlignment="Right" Margin="0,0,48,90" VerticalAlignment="Bottom" Height="40" Width="151" Click="UsefulInfoButton_Click"/>
+        <Label Content="Hold ALT to set all gamma&#xD;&#xA;sliders to the same value" HorizontalAlignment="Right" Margin="0,0,22,168" VerticalAlignment="Bottom" Height="59" Width="178"/>
     </Grid>
 </Window>

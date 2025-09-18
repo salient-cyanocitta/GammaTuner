@@ -772,25 +772,59 @@ namespace GammaTuner
 
         private void RedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(!DataInitialized) return;
-            CurrentChartState.GammaOffsetR = (double)e.NewValue;
-            UpdateSliderLabels();
-            if (instantApply) QueueSetGamma();
+            if (!DataInitialized) return;
+
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+            {
+                setAllGamma((double)e.NewValue);
+            }
+            else
+            {
+                CurrentChartState.GammaOffsetR = (double)e.NewValue;
+                UpdateSliderLabels();
+                if (instantApply) QueueSetGamma();
+            }
         }
 
         private void GreenSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!DataInitialized) return;
-            CurrentChartState.GammaOffsetG = (double)e.NewValue;
-            UpdateSliderLabels();
-            if (instantApply) QueueSetGamma();
+
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+            {
+                setAllGamma((double)e.NewValue);
+            }
+            else
+            {
+                CurrentChartState.GammaOffsetG = (double)e.NewValue;
+                UpdateSliderLabels();
+                if (instantApply) QueueSetGamma();
+            }
         }
 
         private void BlueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!DataInitialized) return;
-            CurrentChartState.GammaOffsetB = (double)e.NewValue;
+
+            if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+            {
+                setAllGamma((double)e.NewValue);
+            }
+            else
+            {
+                CurrentChartState.GammaOffsetB = (double)e.NewValue;
+                UpdateSliderLabels();
+                if (instantApply) QueueSetGamma();
+            }
+        }
+
+        private void setAllGamma(double value)
+        {
+            CurrentChartState.GammaOffsetR = value;
+            CurrentChartState.GammaOffsetG = value;
+            CurrentChartState.GammaOffsetB = value;
             UpdateSliderLabels();
+            UpdateUI();
             if (instantApply) QueueSetGamma();
         }
 
